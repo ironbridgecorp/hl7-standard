@@ -10,6 +10,16 @@ HL7-Standard is a javascript based library that aims to make handling HL7 data s
 
 ---
 
+## Usage
+
+### Install
+
+To install 'hl7-standard' for use in node via require('hl7-standard'), run:
+
+```bash
+npm install hl7-standard
+```
+
 ## API Methods
 
 HL7-Standard enables users to quickly manipulate HL7 data using JSON. It consists of the following methods:
@@ -254,4 +264,6 @@ hl7.moveSegmentBefore(evnSegment, hl7.getSegment('PID'));
 ```
 ---
 
-## Usage Syntax & Examples
+## Mirth Usage
+
+To use the library in mirth, you will need to 
