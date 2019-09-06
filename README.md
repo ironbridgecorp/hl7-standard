@@ -14,7 +14,7 @@ HL7-Standard is a javascript based library that aims to make handling HL7 data s
 
 ### Install
 
-To install 'hl7-standard' for use in node via require('hl7-standard'), run:
+To install 'hl7-standard' for use in node via `require('hl7-standard')`, run:
 
 ```bash
 npm install hl7-standard
