@@ -4,7 +4,7 @@
 
 ## Description & Features
 
-HL7-Standard is a javascript based library that aims to make handling HL7 data simpler.  This lightweight library is able to be used as a stand-alone js scripting module or dropped into an application like mirth to aid in difficult transformations.
+HL7-Standard is a javascript based library that aims to make handling HL7 data simpler.  This lightweight library was written and open sourced by [Iron Bridge](https://www.ironbridgecorp.com/), a healthcare technology company. HL7-Standard is able to be used as a stand-alone js scripting module or dropped into an application like mirth to aid in difficult transformations.
 
 - [Mirth Compatibility](#mirth-usage)
 
