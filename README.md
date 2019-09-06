@@ -1,4 +1,4 @@
-![Alt text](https://hl7-standard-images.s3.amazonaws.com/hl7-standard.svg)
+![Alt text](https://hl7-standard-images.s3.amazonaws.com/hl7-standard-stamp.svg)
 
 *A simple, lightweight HL7 module for tranforming, manipulating, or creating HL7 messages*
 
