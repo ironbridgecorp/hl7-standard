@@ -1,4 +1,11 @@
-![Alt text](https://hl7-standard-images.s3.amazonaws.com/hl7-standard-stamp.svg)
+<h1 align="center">
+  <br>
+  <a href="https://ironbridgecorp.com"><img src="https://hl7-standard-images.s3.amazonaws.com/hl7-standard-stamp.svg" alt="HL7 Standard" width="300"></a>
+  <br>
+  HL7 Standard
+  <br>
+  <br>
+</h1>
 
 *A simple, lightweight HL7 module for tranforming, manipulating, or creating HL7 messages*
 
