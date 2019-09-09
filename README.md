@@ -1,6 +1,6 @@
 <h1 align="center">
   <br>
-  <a href="https://ironbridgecorp.com"><img src="https://hl7-standard-images.s3.amazonaws.com/hl7-standard-stamp.svg" alt="HL7 Standard" width="300"></a>
+  <a href="https://ironbridgecorp.com"><img src="https://hl7-standard-images.s3.amazonaws.com/hl7-standard-logo-stamp.svg" alt="HL7 Standard" width="300"></a>
   <br>
   hl7-standard
   <br>
