@@ -290,7 +290,7 @@ There are many ways to incorporate 'hl7-standard' into your channels workflow, b
 
 If you set the code template options to auto-set the channel dependencies you can skip this step, but you can always check the channel dependencies to ensure the library is accessible by your channel. Channel dependencies can be found under the `Summary` tab of your Mirth channel.
 
-<img src="https://hl7-standard-images.s3.amazonaws.com/channel-dependencies.png" alt="HL7 Standard" width="800">
+<img src="https://hl7-standard-images.s3.amazonaws.com/channel-dependencies.png" alt="HL7 Standard" width="400">
 
 ### Example Mirth Transformers Using 'hl7-standard'
 
