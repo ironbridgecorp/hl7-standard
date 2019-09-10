@@ -272,4 +272,34 @@ hl7.moveSegmentBefore(evnSegment, hl7.getSegment('PID'));
 
 ## Mirth Usage
 
-To use the library in mirth, you will need to 
+Adding 'hl7-standard' to Mirth opens up more possibilities for data tranformations. This 20KB library can make some of the advanced mirth transformations much simplier and can aid in readability and ease of use. Can you get by in Mirth without using 'hl7-standard', absolutely; however, we find this library to be very intuitive and easier for a novice to pick up and run with.
+
+### Configuring 'hl7-standard' in Mirth
+
+To use the library in mirth, you will need to copy the `mirth.min.js` file out of the `builds/` directory and import it into your mirth code templates. On newer versions of mirth make sure you give the template the context of source connector and destination connector and make sure the 'Library' that houses the code template is set to add the lib to any new channel. Alternatively, you can control what channels have access to the library individually using the code template options.
+
+### Setting the Data Types to Raw on a Mirth Channel
+
+There are many ways to incorporate 'hl7-standard' into your channels workflow, but the simplest method would be to set the source data type to `raw` allowing the raw `msg` to be a string.  Channel inbound and outbound data type settings can be found under the `Summary` tab of your Mirth channel.
+
+<img src="https://hl7-standard-images.s3.amazonaws.com/channel-datatypes.png" alt="HL7 Standard" width="600">
+
+### Setting the Dependencies on a Channel
+
+If you set the code template options to auto-set the channel dependencies you can skip this step, but you can always check the channel dependencies to ensure the library is accessible by your channel. Channel dependencies can be found under the `Summary` tab of your Mirth channel.
+
+<img src="https://hl7-standard-images.s3.amazonaws.com/channel-dependencies.png" alt="HL7 Standard" width="600">
+
+### Example Mirth Transformer Using 'hl7-standard'
+
+There are many ways to transform HL7 data with 'hl7-standard'. Below is a sample destination transformer with a HL7 transformation that involves conditionally deleting unwanted NTE segments. More examples like this can be found in the `examples/` directory and on the Iron Bridge Developer Site.
+
+<img src="https://hl7-standard-images.s3.amazonaws.com/example-transformation.png" alt="HL7 Standard" width="600">
+
+### Example Preprocessor Using 'hl7-standard'
+
+A common use case for utilizing 'hl7-standard' in mirth outside of channel transformations is evaluating an incoming message within the preprocessor. Sometimes, interface feeds receive unwanted messages that are not HL7 and they tend to cause errors and issues in the interface workflow. By adding 'hl7-standard', we can evaluate the message in the pre-processor, prior to the message being parsed by mirth.
+
+<img src="https://hl7-standard-images.s3.amazonaws.com/preprocessor-flagging.png" alt="HL7 Standard" width="600">
+
+
