@@ -53,6 +53,11 @@ HL7-Standard enables users to quickly manipulate HL7 data using JSON. It consist
 
 Transforms raw HL7 data to 'hl7-standard' constructor format for message manipulation
 
+| Parameter | Type | Description |
+| :--- | :--- | :--- |
+| `callback` | `Function` | Optional. callback function used to control transformation errors, if not used, a try/catch is recommended |
+| `batch` | `Boolean` | Optional. boolean specifying if message should be treated as a batch message |
+
 ```js
 
 let hl7 = new HL7(rawData);
@@ -87,6 +92,13 @@ fs.writeFileSync(`${__dirname}/data/hl7_message_${uuid}.hl7`, finalizedHL7, 'utf
 
 Gets a value from a transformed segment returning an array, object, or string
 
+| Parameter | Type | Description |
+| :--- | :--- | :--- |
+| `field` | `String` | **Required**. name of field being requested using dot notation |
+| `index` | `Number` | Optional. index of segment relative to other segments of same type |
+| `sectionIndex` | `Number` | Optional. index of section within segment being requested |
+| `subSectionIndex` | `Number` | Optional. index of value in repeating section and field |
+
 ```js
 
 let familyName = hl7.get('PID.5.1'); //Reynolds
@@ -99,6 +111,10 @@ let patientLanguage = hl7.get('PID.15'); // { 'PID.15.1':'en', 'PID.15.2':'Engli
 
 Gets a single segment constructor, if multiple exist, it will return the first one
 
+| Parameter | Type | Description |
+| :--- | :--- | :--- |
+| `segment` | `String` | **Required**. name of segment, must be 3 char |
+
 ```js
 
 let pidSegment = hl7.getSegment('PID');
@@ -109,6 +125,10 @@ pidSegment.get('PID.3.1'); //123456
 ### getSegments
 
 Gets all segment constructors by segment type, if no segment is specified, method will return all segments in the message
+
+| Parameter | Type | Description |
+| :--- | :--- | :--- |
+| `segment` | `String` | Optional. name of segment, must be 3 char, if empty, method will return all segments |
 
 ```js
 const children = hl7.getSegments();
@@ -128,6 +148,13 @@ for (let nte of hl7.getSegment('NTE')) {
 
 Returns all requested 'Segment' constructors at occur in the HL7 message after a specified start point
 
+| Parameter | Type | Description |
+| :--- | :--- | :--- |
+| `start` | `Object` | **Required**. 'Segment' constructor that marks the starting point for the retrieval of segments |
+| `name` | `String` | **Required**. name of segment that you wish to retrieve, must be 3 char |
+| `consecutive` | `Boolean` | Optional. boolean telling the method to only grab segments that are consecutive or back to back in the HL7 message |
+| `stop` | `{String|Array}` | Optional. segment name or list of segment names that would trigger the method to stop collecting matching segments |
+
 ```js
 
 for (let obr of hl7.getSegment('OBR')) {
@@ -142,6 +169,14 @@ for (let obr of hl7.getSegment('OBR')) {
 ### set
 
 Sets a value on a transformed segment
+
+| Parameter | Type | Description |
+| :--- | :--- | :--- |
+| `field` | `String` | **Required**. name of field being set using the dot notation |
+| `value` | `String` | **Required**. value being set on field |
+| `index` | `Number` | Optional. index of segment relative to other segments of same type |
+| `sectionIndex` | `Number` | Optional. index of section within segment being set |
+| `subSectionIndex` | `Number` | Optional. index of value in repeating section and field |
 
 ```js
 
@@ -171,6 +206,10 @@ hl7.set('PID.11', [{
 
 Creates a single segment at the end of the hl7 message
 
+| Parameter | Type | Description |
+| :--- | :--- | :--- |
+| `segment` | `String` | **Required**. name of segment being created, must be 3 char |
+
 ```js
 
 let hl7 = new HL7();
@@ -198,6 +237,11 @@ hl7.set('MSH', {
 
 Creates a single segment after an already existing, specified segment
 
+| Parameter | Type | Description |
+| :--- | :--- | :--- |
+| `segment` | `String` | **Required**. name of segment being created, must be 3 char |
+| `afterSegment` | `Object` | **Required**. 'Segment' constructor of existing segment which the new segment will be positioned after |
+
 ```js
 
 let pv1Segment = hl7.createSegmentAfter('PV1', hl7.getSegment('PID'));
@@ -208,6 +252,11 @@ pv1Segment.set(...);
 ### createSegmentBefore
 
 Creates a single segment before an already existing, specified segment
+
+| Parameter | Type | Description |
+| :--- | :--- | :--- |
+| `segment` | `String` | **Required**. name of segment being created, must be 3 char |
+| `beforeSegment` | `Object` | **Required**. 'Segment' constructor of existing segment which the new segment will be positioned before |
 
 ```js
 
@@ -220,6 +269,10 @@ evnSegment.set(...);
 
 Deletes a single segment from the HL7 message
 
+| Parameter | Type | Description |
+| :--- | :--- | :--- |
+| `segment` | `Object` | **Required**. 'Segment' constructor to be deleted |
+
 ```js
 
 for (let segment of hl7.getSegment()) {
@@ -231,6 +284,10 @@ for (let segment of hl7.getSegment()) {
 ### deleteSegments
 
 Deletes multiple segments from the HL7 message
+
+| Parameter | Type | Description |
+| :--- | :--- | :--- |
+| `segment` | `Array` | **Required**. list of 'Segment' constructors to be deleted |
 
 ```js
 
@@ -251,6 +308,11 @@ hl7.deleteSegments(hl7.getSegments('NTE'))
 
 Moves existing segment after another existing segment
 
+| Parameter | Type | Description |
+| :--- | :--- | :--- |
+| `segment` | `Object` | **Required**. 'Segment' constructor that is being moved |
+| `afterSegment` | `Object` | **Required**. 'Segment' constructor that marks where the segment is being moved after |
+
 ```js
 
 let hl7 = new HL7();
@@ -263,6 +325,11 @@ hl7.moveSegmentAfter(evnSegment, hl7.getSegment('MSH'));
 ### moveSegmentBefore
 
 Moves existing segment before another existing segment
+
+| Parameter | Type | Description |
+| :--- | :--- | :--- |
+| `segment` | `Object` | **Required**. 'Segment' constructor that is being moved |
+| `beforeSegment` | `Object` | **Required**. 'Segment' constructor that marks where the segment is being moved before |
 
 ```js
 
