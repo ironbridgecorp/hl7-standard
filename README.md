@@ -26,6 +26,10 @@ To install 'hl7-standard' for use in node via `require('hl7-standard')`, run:
 npm install hl7-standard
 ```
 
+## Support
+
+We wish to collaborate with like-minded individuals in the healthcare ecosystem who share our vision and goal. Please join us on our 'hl7-standard' slack channel <>.
+
 ## API Methods
 
 HL7-Standard enables users to quickly manipulate HL7 data using JSON. It consists of the following methods:
