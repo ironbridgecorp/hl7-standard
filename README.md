@@ -138,7 +138,7 @@ for (let i = 0; i < children.length; i++) {
   }
 }
 
-for (let nte of hl7.getSegment('NTE')) {
+for (let nte of hl7.getSegments('NTE')) {
   // loop through only the NTE segments using getSegments
 }
 
@@ -153,7 +153,7 @@ Returns all requested 'Segment' constructors at occur in the HL7 message after a
 | `start` | `Object` | **Required**. 'Segment' constructor that marks the starting point for the retrieval of segments |
 | `name` | `String` | **Required**. name of segment that you wish to retrieve, must be 3 char |
 | `consecutive` | `Boolean` | Optional. boolean telling the method to only grab segments that are consecutive or back to back in the HL7 message |
-| `stop` | `{String|Array}` | Optional. segment name or list of segment names that would trigger the method to stop collecting matching segments |
+| `stop` | `String or Array` | Optional. segment name or list of segment names that would trigger the method to stop collecting matching segments |
 
 ```js
 
