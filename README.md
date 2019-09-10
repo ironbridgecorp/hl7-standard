@@ -28,7 +28,7 @@ npm install hl7-standard
 
 ## Support
 
-We wish to collaborate with like-minded individuals in the healthcare ecosystem who share our vision and goal. Please join us on our 'hl7-standard' slack channel <>.
+We wish to collaborate with like-minded individuals in the healthcare ecosystem who share our vision and goal. Please join us on our ['hl7-standard' gitter.im channel](https://gitter.im/hl7-standard/community).
 
 ## API Methods
 
