@@ -284,23 +284,23 @@ There are many ways to incorporate 'hl7-standard' into your channels workflow, b
 
 *This is not a requirement and many implementations involve the default hl7v2 datatypes for inbound and outbound. An example of this can be seen [here](#hl7v2datatype).*
 
-<img src="https://hl7-standard-images.s3.amazonaws.com/channel-datatypes.png" alt="HL7 Standard" width="600">
+<img src="https://hl7-standard-images.s3.amazonaws.com/channel-datatypes.png" alt="HL7 Standard" width="800">
 
 ### Setting the Dependencies on a Channel
 
 If you set the code template options to auto-set the channel dependencies you can skip this step, but you can always check the channel dependencies to ensure the library is accessible by your channel. Channel dependencies can be found under the `Summary` tab of your Mirth channel.
 
-<img src="https://hl7-standard-images.s3.amazonaws.com/channel-dependencies.png" alt="HL7 Standard" width="600">
+<img src="https://hl7-standard-images.s3.amazonaws.com/channel-dependencies.png" alt="HL7 Standard" width="800">
 
 ### Example Mirth Transformers Using 'hl7-standard'
 
 There are many ways to transform HL7 data with 'hl7-standard'. Below is a sample destination transformer with a HL7 transformation that involves conditionally deleting unwanted NTE segments.
 
-<img src="https://hl7-standard-images.s3.amazonaws.com/example-transformation-raw-datatypes.png" alt="HL7 Standard" width="600">
+<img src="https://hl7-standard-images.s3.amazonaws.com/example-transformation-raw-datatypes.png" alt="HL7 Standard" width="800">
 
 If you want to incorporate 'hl7-standard' into a Mirth channel that is already established, using the typical channel datatypes of HL7v2, you can do that by serializing the message from XML to HL7. Below is a high-level example of a Destination Transformer that combines the built in Mirth functionality with 'hl7-standard'.
 
-<img src="https://hl7-standard-images.s3.amazonaws.com/example-transformation-hl7v2-datatypes.png" alt="HL7 Standard" width="600" id="hl7v2datatype">
+<img src="https://hl7-standard-images.s3.amazonaws.com/example-transformation-hl7v2-datatypes.png" alt="HL7 Standard" width="800" id="hl7v2datatype">
 
 More examples like this can be found in the `examples/` directory and on the Iron Bridge Developer Site. 
 
@@ -308,6 +308,6 @@ More examples like this can be found in the `examples/` directory and on the Iro
 
 A common use case for utilizing 'hl7-standard' in mirth outside of channel transformations is evaluating an incoming message within the preprocessor. Sometimes, interface feeds receive unwanted messages that are not HL7 and they tend to cause errors and issues in the interface workflow. By adding 'hl7-standard', we can evaluate the message in the pre-processor, prior to the message being parsed by mirth.
 
-<img src="https://hl7-standard-images.s3.amazonaws.com/preprocessor-flagging.png" alt="HL7 Standard" width="600">
+<img src="https://hl7-standard-images.s3.amazonaws.com/preprocessor-flagging.png" alt="HL7 Standard" width="800">
 
 
