@@ -275,7 +275,7 @@ Deletes a single segment from the HL7 message
 
 ```js
 
-for (let segment of hl7.getSegment()) {
+for (let segment of hl7.getSegments()) {
   if (segment.type === 'ZIB') hl7.deleteSegment(segment);
 }
 
@@ -315,7 +315,7 @@ Moves existing segment after another existing segment
 
 ```js
 
-let hl7 = new HL7();
+let hl7 = new HL7(...);
 let evnSegment = hl7.createSegment('EVN');
 evnSegment.set('EVN.1.1', 'A08');
 hl7.moveSegmentAfter(evnSegment, hl7.getSegment('MSH'));
@@ -333,7 +333,7 @@ Moves existing segment before another existing segment
 
 ```js
 
-let hl7 = new HL7();
+let hl7 = new HL7(...);
 let evnSegment = hl7.createSegment('EVN');
 evnSegment.set('EVN.1.1', 'A08');
 hl7.moveSegmentBefore(evnSegment, hl7.getSegment('PID'));
