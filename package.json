@@ -1,0 +1,25 @@
+{
+  "name": "hl7-standard",
+  "version": "1.0.0",
+  "description": "Simple, Lightweight HL7 module for tranforming, manipulating, or creating HL7 messages.",
+  "main": "index.js",
+  "scripts": {
+    "test": "tap tests",
+    "build": "./node_modules/.bin/babel src/api.js --out-file builds/._.mirth.js; node bin/build.js;"
+  },
+  "author": "Jesse Reynolds <jreynolds@ironbridgecorp.com>",
+  "contributors": [
+    "Jesse Reynolds <jreynolds@ironbridgecorp.com>",
+    "Adam Farabaugh <afarabaugh@ironbridgecorp.com>"
+  ],
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/cli": "^7.5.5",
+    "@babel/core": "^7.5.5",
+    "@babel/preset-env": "^7.5.5",
+    "babel-preset-minify": "^0.5.1",
+    "minifier": "^0.8.1",
+    "rimraf": "^3.0.0",
+    "tap": "^10.1.0"
+  }
+}

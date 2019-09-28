@@ -1,0 +1,22 @@
+FHS|^~\&|1231|||||||||
+BHS|^~\&|1312|||||||||
+MSH|^~\&|ADT|General Hospital|ADT||20070510092626|411|ADT^A01|24553|P|2.4|||
+EVN|A01|200705100926|||411^ADT^LT^D STAFF REGISTERED NURSE^^^^^NMMC^^^^^NMHCR|
+PID||12345-67^internal|4019060^^^^EPI||MotherToBe^Jane^A^^^||19650601|F||WH|123 Main St.^^Edina^MN^55416^US^^^HENNEPIN|HENNEPIN|(612)555-1234^^7|(763)555-4567^^8||M||90000408|222335656|||NHIS||||||||N
+PD1|||General Hospital Pittsburgh^^1000|2725^McCoy^Leonard^^^^||||||||||
+ROL|||PCP|2725^McCoy^Leonard^^^^&one^1|20070510||||||1234 Example Pkwy STE 300^^PITTSBURGH^PA^15226^^^^~1234 Sample Lane STE 200^^WASHINGTON^PA^15226^^^^
+ROL|||PCC|two^710010^NORTH CLINIC^MAPLE^GROVE^^^|20070510||||||4321 NORTH EXAMPLE LANE^^PITTSBURGH^PA^15226^^^^
+CON|1^two^three|PIC|service area default||||||||10||20070510||
+SOM|1|||||||
+CON|2|INS|service area default||||||||10||20070510||
+CON|3|CFC|service area default||||||||11||||
+MSH|^~\&|IBI-IIS|IBI-IIS|||20171023134421-0600||RSP^K11^RSP_K11|20171023134421|P|2.5.1|||NE|NE|||||Z42^CDCPHINVS
+MSA|AA|50cbf83f-e717-4775-b0df-dfd28a616787
+QAK|IZ-2.1-2015|OK|Z44^Request Evaluated History and Forecast^CDCPHINVS
+QPD|Z44^Request Evaluated History and Forecast^CDCPHINVS|IZ-2.1-2015|123456^^^NIST-MPI-1^MR|PATIENT^TEST^^^^^L||19600514|M|^^^^^USA^P|||
+PID|1||123456^^^NIST-MPI-1^MR~654321^^^ALA^SR||PATIENT^TEST^^^^^U||19600514|M|||
+OBX||||xMSHx||||
+OBX||||xMSH||||
+OBX||||MSH||||MSH
+BTS|||||||||||
+FTS|||||||||||

@@ -1,0 +1,8 @@
+{
+  "presets": [["minify", {
+    "mangle": true,
+    "keepFnName": true,
+    "deadcode": false
+    }], ["@babel/preset-env"]],
+    "comments": false
+}

@@ -1,0 +1,33 @@
+MSH|^~\&|IBI-IIS|IBI-IIS|||20171023134421-0600||RSP^K11^RSP_K11|20171023134421|P|2.5.1|||NE|NE|||||Z42^CDCPHINVS
+MSA|AA|50cbf83f-e717-4775-b0df-dfd28a616787
+QAK|IZ-2.1-2015|OK|Z44^Request Evaluated History and Forecast^CDCPHINVS
+QPD|Z44^Request Evaluated History and Forecast^CDCPHINVS|IZ-2.1-2015|123456^^^NIST-MPI-1^MR|PATIENT^TEST^^^^^L||19600514|M|^^^^^USA^P|||
+PID|1||123456^^^NIST-MPI-1^MR~654321^^^ALA^SR||PATIENT^TEST^^^^^U||19600514|M|||
+ORC|RE||123^IBI-IIS|
+RXA|0|1|20171023|20171023|998^No vaccine administered^CVX|999||||||||||||||NA|A|
+OBX|1|CE|30979-9^Vaccine due next^LN|1|03^MMR^CVX||||||F||||
+OBX|2|DT|30980-7^Date vaccine due^LN|1|19850522||||||F||||
+OBX|3|NM|30973-2^Vaccine due next dose number^LN|1|1|NA^NA^HL70353|||||F||||
+OBX|4|CE|59783-1^Status in immunization series^LN|1|LA13423-1^Overdue^LN||||||F|
+OBX|5|CE|59779-9^Immunization Schedule Used^LN|1|VXC16^ACIP^CDCPHINVS||||||F||||
+OBX|6|CE|30979-9^Vaccine due next^LN|2|21^VARICELLA^CVX||||||F||||
+OBX|7|DT|30980-7^Date vaccine due^LN|2|19850522||||||F||||
+OBX|8|NM|30973-2^Vaccine due next dose number^LN|2|1|NA^NA^HL70353|||||F||||
+OBX|9|CE|59783-1^Status in immunization series^LN|2|LA13423-1^Overdue^LN||||||F|
+OBX|10|CE|59779-9^Immunization Schedule Used^LN|2|VXC16^ACIP^CDCPHINVS||||||F||||
+OBX|11|CE|30979-9^Vaccine due next^LN|3|107^DTAP UNSPECIFIED FORMULATION^CVX||||||F||||
+OBX|12|DT|30980-7^Date vaccine due^LN|3|19910522||||||F||||
+OBX|13|NM|30973-2^Vaccine due next dose number^LN|3|1|NA^NA^HL70353|||||F||||
+OBX|14|CE|59783-1^Status in immunization series^LN|3|LA13423-1^Overdue^LN||||||F|
+OBX|15|CE|59779-9^Immunization Schedule Used^LN|3|VXC16^ACIP^CDCPHINVS||||||F||||
+OBX|16|CE|30979-9^Vaccine due next^LN|4|33^PNEUMOCOCCAL POLYSACCHARIDE PPV23^CVX||||||F||||
+OBX|17|DT|30980-7^Date vaccine due^LN|4|20490522||||||F||||
+OBX|18|NM|30973-2^Vaccine due next dose number^LN|4|1|NA^NA^HL70353|||||F||||
+OBX|19|CE|59783-1^Status in immunization series^LN|4|LA13422-3^On schedule^LN||||||F|
+OBX|20|CE|59779-9^Immunization Schedule Used^LN|4|VXC16^ACIP^CDCPHINVS||||||F||||
+OBX|21|CE|30979-9^Vaccine due next^LN|5|137^HPV, UNSPECIFIED FORMULATION^CVX||||||F||||
+OBX|22|CE|59783-1^Status in immunization  series^LN|5|LA13424-9^Not Recommended - Too old^LN||||||F|
+OBX|23|CE|59779-9^Immunization Schedule Used^LN|5|VXC16^ACIP^CDCPHINVS||||||F||||
+OBX|24|CE|30979-9^Vaccine due next^LN|6|122^ROTAVIRUS, UNSPECIFIED FORMULATION^CVX||||||F||||
+OBX|25|CE|59783-1^Status in immunization  series^LN|6|LA13424-9^Not Recommended - Too old^LN||||||F|
+OBX|26|CE|59779-9^Immunization Schedule Used^LN|6|VXC16^ACIP^CDCPHINVS||||||F||||
