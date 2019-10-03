@@ -13,6 +13,11 @@
     "Adam Farabaugh <afarabaugh@ironbridgecorp.com>"
   ],
   "license": "Apache-2.0",
+  "keywords": [
+    "hl7",
+    "parse",
+    "format"
+  ],
   "devDependencies": {
     "@babel/cli": "^7.5.5",
     "@babel/core": "^7.5.5",
