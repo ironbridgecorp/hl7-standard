@@ -12,7 +12,7 @@
     "Jesse Reynolds <jreynolds@ironbridgecorp.com>",
     "Adam Farabaugh <afarabaugh@ironbridgecorp.com>"
   ],
-  "license": "ISC",
+  "license": "Apache-2.0",
   "devDependencies": {
     "@babel/cli": "^7.5.5",
     "@babel/core": "^7.5.5",
