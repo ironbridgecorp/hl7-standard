@@ -42,7 +42,7 @@ const _getSegIndexes = (names, data, list = []) => {
         m.index = m.index + 2;
       } else if (s.indexOf('\n') != -1) {
         m.index++;
-      }  else if (s.indexOf('\r') != -1) {
+      } else if (s.indexOf('\r') != -1) {
         m.index++;
       }
       if (m.index !== null) list.push(m.index);
@@ -363,7 +363,7 @@ module.exports = class HL7 {
   transform (cb, batch = false) {
     if (!this.raw.startsWith('MSH') && !this.raw.startsWith('FHS') && !this.raw.startsWith('BHS') && !this.raw.startsWith('BTS') && !this.raw.startsWith('FTS')) {
       let error = new Error('Expected raw data to be HL7');
-      return cb(error, null);
+      if (cb) return cb(error, null);
       throw error;
     }
     if (!batch && _isBatch(this.raw, this.forceBatch)) {
@@ -391,8 +391,10 @@ module.exports = class HL7 {
       if (cb) return cb(null, this.container);
     } else {
       _defineLineEndings(this.raw, (err, lr) => {
-        if (err) return cb(err, null);
-        const {parseOptions} = this;
+        if (err) {
+          if (cb) return cb(err, null);
+          throw err;
+        } const {parseOptions} = this;
         var lines = this.raw.split(lr).filter(line => line.indexOf('|') > -1), isMSH = false;
         this.lastIndex = lines.length - 1;
         for (let i = 0; i < lines.length; i++) {
@@ -918,4 +920,4 @@ module.exports = class HL7 {
     _moveSegment.call(this, newIndex, true);
     segment.index = newIndex;
   }
-}
+};
