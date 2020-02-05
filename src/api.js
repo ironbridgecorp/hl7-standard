@@ -394,7 +394,8 @@ module.exports = class HL7 {
         if (err) {
           if (cb) return cb(err, null);
           throw err;
-        } const {parseOptions} = this;
+        }
+        const {parseOptions} = this;
         var lines = this.raw.split(lr).filter(line => line.indexOf('|') > -1), isMSH = false;
         this.lastIndex = lines.length - 1;
         for (let i = 0; i < lines.length; i++) {
