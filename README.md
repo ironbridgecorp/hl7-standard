@@ -6,7 +6,7 @@
   <br>
 </h1>
 
-*A simple, lightweight HL7 module for tranforming, manipulating, or creating HL7 messages*
+*A simple, lightweight HL7 module for transforming, manipulating, or creating HL7 messages*
 
 ## Description & Features
 
