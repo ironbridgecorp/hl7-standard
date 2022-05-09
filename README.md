@@ -49,6 +49,15 @@ HL7-Standard enables users to quickly manipulate HL7 data using JSON. It consist
 - [moveSegmentAfter](#movesegmentafter)
 - [moveSegmentBefore](#movesegmentbefore)
 
+### parseOptions
+
+Set up a custom line ending (ie. \n) for your build method.
+
+```js
+let hl7 = new HL7(data, { lineEnding: '\n' });
+console.log(hl7.build());
+```
+
 ### transform
 
 Transforms raw HL7 data to 'hl7-standard' constructor format for message manipulation
