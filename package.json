@@ -1,6 +1,6 @@
 {
   "name": "hl7-standard",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Simple, Lightweight HL7 module for tranforming, manipulating, or creating HL7 messages.",
   "main": "index.js",
   "scripts": {
