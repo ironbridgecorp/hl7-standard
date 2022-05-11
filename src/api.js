@@ -345,7 +345,8 @@ module.exports = class HL7 {
     this.encoded = '';
     this.parseOptions = {
       subComponents: (opts.subComponents) ? opts.subComponents : '~',
-      repeatingFields: (opts.repeatingFields) ? opts.repeatingFields : '&'
+      repeatingFields: (opts.repeatingFields) ? opts.repeatingFields : '&',
+      lineEndings: (opts.lineEndings) ? opts.lineEndings : '\r\n'
     };
     this.forceBatch = false;
     this.isBatch = () => this.forceBatch;
@@ -450,19 +451,19 @@ module.exports = class HL7 {
     this.encoded = '';
     if (this.isBatch()) {
       this.header.forEach(data => {
-        this.encoded += _build(data.transformed, parseOptions).sort((a, b) => a.index - b.index).map(line => line.line).join('\r\n');
-        this.encoded += '\r\n';
+        this.encoded += _build(data.transformed, parseOptions).sort((a, b) => a.index - b.index).map(line => line.line).join(parseOptions.lineEndings);
+        this.encoded += parseOptions.lineEndings;
       });
       this.container.forEach(data => {
-        this.encoded += _build(data.transformed, parseOptions).sort((a, b) => a.index - b.index).map(line => line.line).join('\r\n');
-        this.encoded += '\r\n';
+        this.encoded += _build(data.transformed, parseOptions).sort((a, b) => a.index - b.index).map(line => line.line).join(parseOptions.lineEndings);
+        this.encoded += parseOptions.lineEndings;
       });
       this.trailer.forEach(data => {
-        this.encoded += _build(data.transformed, parseOptions).sort((a, b) => a.index - b.index).map(line => line.line).join('\r\n');
-        this.encoded += '\r\n';
+        this.encoded += _build(data.transformed, parseOptions).sort((a, b) => a.index - b.index).map(line => line.line).join(parseOptions.lineEndings);
+        this.encoded += parseOptions.lineEndings;
       });
     } else {
-      this.encoded += _build(transformed, parseOptions).sort((a, b) => a.index - b.index).map(line => line.line).join('\r\n');
+      this.encoded += _build(transformed, parseOptions).sort((a, b) => a.index - b.index).map(line => line.line).join(parseOptions.lineEndings);
     }
     return this.encoded;
   }
