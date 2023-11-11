@@ -7,25 +7,29 @@
 if (!String.prototype.startsWith) {
   Object.defineProperty(String.prototype, 'startsWith', {
     value: function (search, rawPos) {
-      pos = rawPos > 0 ? rawPos | 0 : 0;
+      let pos = rawPos > 0 ? rawPos | 0 : 0;
       return this.substring(pos, pos + search.length) === search;
     }
   });
 }
 
+const _checkConstructor = (constructorName) => {
+  if (constructorName !== 'HL7') throw new Error('HL7 data added is not HL7 constructor');
+}
+
 const _addBatchSegment = function (data, type) {
-  if (data.constructor.name !== 'HL7') throw new Error('HL7 data added is not HL7 constructor');
+  _checkConstructor(data.constructor.name)
   return this[type].push(data);
 };
 
 const _addToBatch = function (data) {
-  if (data.constructor.name !== 'HL7') throw new Error('HL7 data added is not HL7 constructor');
+  _checkConstructor(data.constructor.name)
   return this.container.push(data);
 };
 
 const _splitBatch = indexes => (data, batch = []) => {
   indexes.sort((a, b) => a - b);
-  for (var i = 0; i < indexes.length; i++) {
+  for (let i = 0; i < indexes.length; i++) {
     let start = indexes[i], end = indexes[i + 1];
     if (i + 1 === indexes.length) end = data.length;
     batch.push(data.slice(start, end));
@@ -38,11 +42,11 @@ const _getSegIndexes = (names, data, list = []) => {
     let regexp = new RegExp(`(\n|\r\n|^|\r)${names[i]}\\|`, 'g'), m;
     while (m = regexp.exec(data)) {
       var s = m[0];
-      if (s.indexOf('\r\n') != -1) {
+      if (s.indexOf('\r\n') !== -1) {
         m.index = m.index + 2;
-      } else if (s.indexOf('\n') != -1) {
+      } else if (s.indexOf('\n') !== -1) {
         m.index++;
-      } else if (s.indexOf('\r') != -1) {
+      } else if (s.indexOf('\r') !== -1) {
         m.index++;
       }
       if (m.index !== null) list.push(m.index);
@@ -52,26 +56,28 @@ const _getSegIndexes = (names, data, list = []) => {
 };
 
 const _isBatch = (data, batch) => {
-  return (typeof data === 'string' && (data.startsWith('FHS') || data.startsWith('BHS') || batch)) ? true : false;
+  return (typeof data === 'string' && (data.startsWith('FHS') || data.startsWith('BHS') || batch));
 };
 
 const _batchIterate = function (predicate) {
-  for (let i = 0; i < this.container.length; i++) {
-    predicate.call(this, i, this.container[i]);
-  }
+  this.container.forEach((element, index) => {
+    predicate.call(this, index, element)
+  })
 };
 
 const _invalidSegments = function (segs) {
-  return segs.some(seg => (seg.match(/[^A-Z0-9]/g) !== null));
+  return segs.some(seg => seg.match(/[^A-Z0-9]/g));
 };
 
 const _defineLineEndings = function (data, cb) {
   function _mode (assets) {
     const map = assets.reduce((list, asset) => {
       if (!(asset in list)) list[asset] = 0;
-      return list[asset]++, list;
+      list[asset]++;
+      return list;
     }, {});
-    var keys = Object.keys(map), keyValues = keys.map(v => map[v]);
+    let keys = Object.keys(map)
+    let keyValues = keys.map(v => map[v]);
     let max = Math.max.apply(null, keyValues), modes = [];
     keys.forEach(v => {
       if (map[v] === max) modes.push(v);
@@ -236,28 +242,28 @@ const _defineField = function (field) {
 };
 
 const _segmentExists = function (segment, index) {
-  let segmentExists = (typeof this.transformed[segment] !== 'undefined') ? true : false, isArray = false;
-  if (segmentExists) isArray = (Array.isArray(this.transformed[segment])) ? true : false;
-  if (isArray) segmentExists = (typeof this.transformed[segment][(index) ? index : 0] !== 'undefined') ? true : false;
+  let segmentExists = (typeof this.transformed[segment] !== 'undefined'), isArray = false;
+  if (segmentExists) isArray = Array.isArray(this.transformed[segment]);
+  if (isArray) segmentExists = typeof this.transformed[segment][(index) ? index : 0] !== 'undefined';
   return { segmentExists, isArray };
 };
 
 const _sectionExists = function (reference, section, sectionIndex) {
   let isArray = false, isAtIndex = false;
-  let sectionExists = (typeof reference.data[section] !== 'undefined') ? true : false;
+  let sectionExists = (typeof reference.data[section] !== 'undefined');
   if (sectionExists) {
-    isArray = (Array.isArray(reference.data[section])) ? true : false;
-    if (typeof sectionIndex === 'number' && isArray) isAtIndex = (typeof reference.data[section][(sectionIndex) ? sectionIndex : 0] !== 'undefined') ? true : false;
+    isArray = Array.isArray(reference.data[section]);
+    if (typeof sectionIndex === 'number' && isArray) isAtIndex = typeof reference.data[section][(sectionIndex) ? sectionIndex : 0] !== 'undefined';
   }
   return { sectionExists, isAtIndex, isArray };
 };
 
 const _subSectionExists = function (reference, sub, subIndex) {
   let isArray = false, isAtIndex = false;
-  let subSectionExists = (typeof reference[sub] !== 'undefined') ? true : false;
+  let subSectionExists = (typeof reference[sub] !== 'undefined');
   if (subSectionExists) {
-    isArray = (Array.isArray(reference[sub])) ? true : false;
-    if (typeof subIndex === 'number' && isArray) isAtIndex = (typeof reference[sub][(subIndex) ? subIndex : 0] !== 'undefined') ? true : false;
+    isArray = !!(Array.isArray(reference[sub]));
+    if (typeof subIndex === 'number' && isArray) isAtIndex = typeof reference[sub][(subIndex) ? subIndex : 0] !== 'undefined';
   }
   return { subSectionExists, isAtIndex, isArray };
 };
@@ -270,7 +276,7 @@ const _createSection = function (reference, position) {
 };
 
 const _createSectionAtIndex = function (reference, isArray, section = 0) {
-  reference = (isArray) ? reference : [(typeof reference !== 'undefined') ? reference : {}];
+  reference = isArray ? reference : [(typeof reference !== 'undefined') ? reference : {}];
   for (let i = 0; i <= section; i++) {
     if (typeof reference[i] === 'undefined') reference[i] = {};
   }
@@ -294,7 +300,7 @@ const _createSubSectionAtIndex = function (reference, isArray, sub = 0) {
 };
 
 const _validSegment = function (segment) {
-  return (typeof segment === 'string' && segment.length === 3) ? true : false;
+  return typeof segment === 'string' && segment.length === 3;
 };
 
 const _moveSegment = function (from, forward) {
@@ -356,7 +362,7 @@ module.exports = class HL7 {
   /**
    * Transforms raw HL7 data to 'hl7-standard' constructor format for message manipulation
    *
-   * @param {Function} callback function used to control transformation errors, optional
+   * @param {Function} cb function used to control transformation errors, optional
    * @param {Boolean} batch boolean specifying if message should be treated as a batch message, optional
    * @api public
    */
@@ -401,7 +407,7 @@ module.exports = class HL7 {
         this.lastIndex = lines.length - 1;
         for (let i = 0; i < lines.length; i++) {
           let name = lines[i].substring(0, 3);
-          isMSH = (name === 'MSH') ? true : false;
+          isMSH = name === 'MSH';
           if (Object.keys(this.transformed).indexOf(name) > -1) {
             if (Array.isArray(this.transformed[name])) {
               let segment = _SegmentGenerator.call(this, name);
@@ -449,21 +455,18 @@ module.exports = class HL7 {
   build () {
     const { transformed, parseOptions } = this;
     this.encoded = '';
+
+    function appendToEncoded(data) {
+      this.encoded += _build(data.transformed, parseOptions).sort((a, b) => a.index - b.index).map(({line}) => line).join(parseOptions.lineEndings);
+      this.encoded += parseOptions.lineEndings;
+    }
+
     if (this.isBatch()) {
-      this.header.forEach(data => {
-        this.encoded += _build(data.transformed, parseOptions).sort((a, b) => a.index - b.index).map(line => line.line).join(parseOptions.lineEndings);
-        this.encoded += parseOptions.lineEndings;
-      });
-      this.container.forEach(data => {
-        this.encoded += _build(data.transformed, parseOptions).sort((a, b) => a.index - b.index).map(line => line.line).join(parseOptions.lineEndings);
-        this.encoded += parseOptions.lineEndings;
-      });
-      this.trailer.forEach(data => {
-        this.encoded += _build(data.transformed, parseOptions).sort((a, b) => a.index - b.index).map(line => line.line).join(parseOptions.lineEndings);
-        this.encoded += parseOptions.lineEndings;
-      });
+      this.header.forEach(appendToEncoded);
+      this.container.forEach(appendToEncoded);
+      this.trailer.forEach(data => appendToEncoded);
     } else {
-      this.encoded += _build(transformed, parseOptions).sort((a, b) => a.index - b.index).map(line => line.line).join(parseOptions.lineEndings);
+      this.encoded += _build(transformed, parseOptions).sort((a, b) => a.index - b.index).map(({line}) => line).join(parseOptions.lineEndings);
     }
     return this.encoded;
   }
@@ -589,7 +592,7 @@ module.exports = class HL7 {
               }
             } else {
               let val = this.transformed[segment][index].data[section][sectionIndex];
-              return ((notation[2] == 1) && (typeof val === 'string')) ? val : null;
+              return (Number(notation[2]) === 1 && (typeof val === 'string')) ? val : null;
             }
           } else {
             if (typeof this.transformed[segment][index].data[section][sub] !== 'undefined') {
@@ -600,7 +603,7 @@ module.exports = class HL7 {
               }
             } else {
               let val = this.transformed[segment][index].data[section];
-              return ((notation[2] == 1) && (typeof val === 'string')) ? val : null;
+              return (Number(notation[2]) === 1 && (typeof val === 'string')) ? val : null;
             }
           }
         } else {
@@ -662,8 +665,7 @@ module.exports = class HL7 {
       return this.transformed[segment] ? this.transformed[segment] : [];
     } else {
       return Object.keys(this.transformed).reduce((a, b) => {
-        a = a.concat(this.transformed[b]);
-        return a;
+        return a.concat(this.transformed[b]);
       }, []);
     }
   }
@@ -678,7 +680,7 @@ module.exports = class HL7 {
 
   createSegment (segment) {
     if (!_validSegment(segment)) throw new Error('Cannot create segment because \'segment\' parameter: is invalid.');
-    const exists = (typeof this.transformed[segment] !== 'undefined') ? true : false;
+    const exists = typeof this.transformed[segment] !== 'undefined';
     this.lastIndex++;
     if (exists) {
       if (Array.isArray(this.transformed[segment])) {
@@ -713,7 +715,7 @@ module.exports = class HL7 {
 
   createSegmentAfter (segment, afterSegment = {}) {
     if (!_validSegment(segment)) throw new Error('Cannot create segment after because \'segment\' parameter: is invalid.');
-    const exists = (typeof this.transformed[segment] !== 'undefined') ? true : false;
+    const exists = typeof this.transformed[segment] !== 'undefined';
     if (afterSegment.constructor.name !== 'Segment') throw new Error('Cannot create segment after because \'afterSegment\' parameter: is invalid.');
     this.lastIndex++;
     const newIndex = afterSegment.index + 1;
@@ -753,7 +755,7 @@ module.exports = class HL7 {
 
   createSegmentBefore (segment, beforeSegment = {}) {
     if (!_validSegment(segment)) throw new Error('Cannot create segment before because \'segment\' parameter: is invalid.');
-    const exists = (typeof this.transformed[segment] !== 'undefined') ? true : false;
+    const exists = typeof this.transformed[segment] !== 'undefined';
     if (beforeSegment.constructor.name !== 'Segment') throw new Error('Cannot create segment before because \'beforeSegment\' parameter: is invalid.');
     this.lastIndex++;
     const newIndex = beforeSegment.index - 1;
